@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LibrosController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,4 +33,9 @@ Route::middleware(['auth'])->group(function () {
         return 'Configuración del sistema';
     });
 });
+
+Route::get('/libros/alta',       [LibrosController::class, 'mostrar_formulario']);
+Route::post('/libros/alta',      [LibrosController::class, 'procesar_formulario']);
+
+Route::get('/libros',       [LibrosController::class, 'mostrar_libros']);
 
