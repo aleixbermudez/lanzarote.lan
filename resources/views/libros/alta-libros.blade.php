@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Alta de libro</title>
-</head>
-<body>
-    <div class="container">
+@extends('layout')
+@section('title', 'Alta de Libro')
+
+@section('content')
+    <div class="container" style="margin-top: 40px;">
         <form method='POST' action="/libros/alta">
             @csrf
             <div class="form-group">
@@ -38,12 +33,9 @@
             </div>
 
             <div class="d-flex">
-                <button type="submit" style="width: 200px;" class="btn btn-success ml-auto">Enviar</button>
+                <button type="submit" style="width: 200px;" class="btn btn-secondary ml-auto">Enviar</button>
             </div>
             
         </form>
     </div>
-    
-
-</body>
-</html>
+@endsection

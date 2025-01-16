@@ -1,11 +1,11 @@
 @extends('layout')
-@section('title', 'Enviado')
+@section('title', 'Eliminado')
 
 @section('content')
 
     <div class="container mt-5">
         <div class="alert alert-success" role="alert">
-            Se ha añadido correctamente.
+            Se ha eliminado correctamente.
         </div>
 
         

@@ -11,10 +11,6 @@ Route::get('/playas', function () {
     return view('playas');
 });
 
-Route::get('/usuario/{id}', function ($id) {
-    return 'ID de Usuario: ' . $id;
-});
-
 Route::get('/contacto', function () {
     $url = route('contacto'); 
     return 'Página de contacto';
@@ -39,3 +35,7 @@ Route::post('/libros/alta',      [LibrosController::class, 'procesar_formulario'
 
 Route::get('/libros',       [LibrosController::class, 'mostrar_libros']);
 
+Route::get('/libros/eliminar/{id}',       [LibrosController::class, 'eliminar_libro']);
+
+Route::get('/libros/actualizar/{id}',       [LibrosController::class, 'actualizar_libro']);
+Route::post('/libros/actualizar/{id}',       [LibrosController::class, 'procesar_actualizar_libro']);

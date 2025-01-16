@@ -36,27 +36,118 @@ class LibrosController extends Controller
             ], 422);
 
         } else {
-            $modelo = new Libro;
-            $modelo->titulo = $request->titulo;
-            $modelo->autor = $request->autor;
-            $modelo->anho_publicacion = $request->anho_publicacion;
-            $modelo->genero = $request->genero;
-            $modelo->descripcion = $request->descripcion;
-            $modelo->save();
 
-            return view('enviado');
+            $libros = Libro::all();
+            $repetido = 0;
+            $salida = '';
+
+            foreach ($libros as $libro) {
+                if ($request->titulo == $libro->titulo) {
+                    $repetido += 1;
+                }
+            }
+
+            if ($repetido == 0) {
+
+                $modelo = new Libro;
+                $modelo->titulo = $request->titulo;
+                $modelo->autor = $request->autor;
+                $modelo->anho_publicacion = $request->anho_publicacion;
+                $modelo->genero = $request->genero;
+                $modelo->descripcion = $request->descripcion;
+                $modelo->save();
+    
+                $salida = 'enviado';
+            } else {
+                $salida = 'error';
+            }
+
+            return view($salida);
+
         }
         
     }
 
     function mostrar_formulario()
     {
-        return view('alta-libros');
+        return view('libros.alta-libros');
     }
 
     function mostrar_libros()
     {
         $libros = Libro::all();
-        return view('libros',compact('libros'));
+        return view('libros.libros',compact('libros'));
     }
+
+
+    function eliminar_libro($id) {
+
+        $libro = Libro::find($id);
+        $salida = '';
+
+        if ($libro) {
+            $libro->delete();
+            $salida = 'eliminado';
+        } else {
+            $salida = 'error';
+        }
+
+        return view($salida);
+
+    }
+
+    function actualizar_libro($id) {
+
+        $libro = Libro::find($id);
+        return view('libros.editar-libro', compact('libro'));
+
+    }
+
+    function procesar_actualizar_libro(Request $request) {
+
+        $data = [
+            'titulo' => $request->titulo,
+            'autor' => $request->autor,
+            'anho_publicacion' => $request->anho_publicacion,
+            'genero' => $request->genero,
+            'descripcion' => $request->descripcion,
+        ];
+
+        $rules = [
+            'titulo' => 'required|string|max:255',
+            'autor' => 'required|string|max:255',
+            'anho_publicacion' => 'required|int',
+            'genero' => 'required',
+            'descripcion' => 'required'
+        ];
+
+        $validator = Validator::make($data, $rules);
+        
+        if ($validator->fails()) {
+        
+            return response()->json([
+                'message' => 'Los datos no son válidos',
+                'errors' => $validator->errors()
+            ], 422);
+
+        } else {
+
+            $libro = Libro::find($id);
+
+            $libro->titulo = $request->titulo;
+            $libro->autor = $request->autor;
+            $libro->anho_publicacion = $request->anho_publicacion;
+            $libro->genero = $request->genero;
+            $libro->descripcion = $request->descripcion;
+
+            $libro->save();
+
+            return view('enviado');
+
+        }
+
+    }
+
+
+
 }

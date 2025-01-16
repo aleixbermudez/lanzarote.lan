@@ -1,11 +1,11 @@
 @extends('layout')
-@section('title', 'Enviado')
+@section('title', 'Error')
 
 @section('content')
 
     <div class="container mt-5">
-        <div class="alert alert-success" role="alert">
-            Se ha añadido correctamente.
+        <div class="alert alert-danger" role="alert">
+            Ha habido un erorr!
         </div>
 
         

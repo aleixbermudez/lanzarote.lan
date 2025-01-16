@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Libros</title>
-</head>
-<body>
+@extends('layout')
+@section('title', 'Libros')
+
+@section('content')
+
 
     <div class="container">
 
@@ -19,6 +15,7 @@
                 <th scope="col">Año de Publicacion</th>
                 <th scope="col">Genero</th>
                 <th scope="col">Descripción</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -30,12 +27,21 @@
                     <th>{{$libro->anho_publicacion}}</th>
                     <th>{{$libro->genero}}</th>
                     <th>{{$libro->descripcion}}</th>
+                    <th>
+                        <div class="d-flex">
+                            <button type="button" class="btn"><a href="/libros/eliminar/{{$libro->id}}">❌</a></button>
+                            <button type="button" class="btn"><a href="/libros/actualizar/{{$libro->id}}">⚙️</a></button>
+                        </div>
+                    </th>
                 </tr>
             @endforeach
         </tbody>
         </table>
 
+        <div class="d-flex">
+            <a href="/libros/alta" style="width: 200px;" class="btn btn-secondary ml-auto">Añadir</a>
+        </div>
+
     </div>
-    
-</body>
-</html>
+
+@endsection
