@@ -13,6 +13,7 @@ class LibrosController extends Controller
     {
         $data = [
             'titulo' => $request->titulo,
+            'editorial' => $request->editorial,
             'autor' => $request->autor,
             'anho_publicacion' => $request->anho_publicacion,
             'genero' => $request->genero,
@@ -21,6 +22,7 @@ class LibrosController extends Controller
         
         $rules = [
             'titulo' => 'required|string|max:255',
+            'editorial' => 'required',
             'autor' => 'required|string|max:255',
             'anho_publicacion' => 'required|int',
             'genero' => 'required',
@@ -31,7 +33,7 @@ class LibrosController extends Controller
         if ($validator->fails()) {
         
             return response()->json([
-                'message' => 'Los datos no son válidos',
+                'message' => 'Los datos introducidos no son válidos',
                 'errors' => $validator->errors()
             ], 422);
 
@@ -51,6 +53,7 @@ class LibrosController extends Controller
 
                 $modelo = new Libro;
                 $modelo->titulo = $request->titulo;
+                $modelo->editorial = $request->editorial;
                 $modelo->autor = $request->autor;
                 $modelo->anho_publicacion = $request->anho_publicacion;
                 $modelo->genero = $request->genero;

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('libros', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
+            $table->string('editorial');
             $table->string('autor');
             $table->string('anho_publicacion');
             $table->string('genero');

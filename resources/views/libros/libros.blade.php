@@ -11,6 +11,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Titulo</th>
+                <th scope="col">Editorial</th>
                 <th scope="col">Autor</th>
                 <th scope="col">Año de Publicacion</th>
                 <th scope="col">Genero</th>
@@ -23,6 +24,7 @@
                 <tr>    
                     <th>{{$libro->id}}</th>
                     <th>{{$libro->titulo}}</th>
+                    <th>{{$libro->editorial}}</th>
                     <th>{{$libro->autor}}</th>
                     <th>{{$libro->anho_publicacion}}</th>
                     <th>{{$libro->genero}}</th>
