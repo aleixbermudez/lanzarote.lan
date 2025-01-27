@@ -1,7 +1,9 @@
 @extends('layout')
 @section('title', 'Alta de Libro')
+@vite(['resources/js/app.js'])
 
 @section('content')
+
     <div class="container" style="margin-top: 40px;">
         <form method='POST' action="/libros/alta">
             @csrf
@@ -27,6 +29,14 @@
                     <option value="Fantasia">Fantasia</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="editorial">Editrial:</label>
+                <select class="form-control" id="editorial" name="editorial">
+                    <option value="Prueba">Prueba</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="descripcion">Descripcion:</label>
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
@@ -37,5 +47,7 @@
             </div>
             
         </form>
+
+
     </div>
 @endsection

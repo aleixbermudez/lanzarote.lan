@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/libros/alta',       [LibrosController::class, 'mostrar_formulario']);
-Route::post('/libros/alta',      [LibrosController::class, 'procesar_formulario']);
+Route::post('/libros/alta',      [LibrosController::class, 'procesar']);
 
 Route::get('/libros',       [LibrosController::class, 'mostrar_libros']);
 

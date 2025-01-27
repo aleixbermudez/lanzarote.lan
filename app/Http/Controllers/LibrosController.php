@@ -9,7 +9,7 @@ use App\Models\Libro;
 
 class LibrosController extends Controller
 {
-    function procesar_formulario(Request $request)
+    function procesar(Request $request)
     {
         $data = [
             'titulo' => $request->titulo,
@@ -73,12 +73,12 @@ class LibrosController extends Controller
 
     function mostrar_formulario()
     {
-        return view('libros.alta-libros');
+        return view('libros.formulario-libro');
     }
 
     function mostrar_libros()
     {
-        $libros = Libro::all();
+        $libros = Libro::paginate(7);
         return view('libros.libros',compact('libros'));
     }
 
@@ -106,50 +106,8 @@ class LibrosController extends Controller
 
     }
 
-    function procesar_actualizar_libro(Request $request) {
 
-        $data = [
-            'titulo' => $request->titulo,
-            'autor' => $request->autor,
-            'anho_publicacion' => $request->anho_publicacion,
-            'genero' => $request->genero,
-            'descripcion' => $request->descripcion,
-        ];
-
-        $rules = [
-            'titulo' => 'required|string|max:255',
-            'autor' => 'required|string|max:255',
-            'anho_publicacion' => 'required|int',
-            'genero' => 'required',
-            'descripcion' => 'required'
-        ];
-
-        $validator = Validator::make($data, $rules);
-        
-        if ($validator->fails()) {
-        
-            return response()->json([
-                'message' => 'Los datos no son válidos',
-                'errors' => $validator->errors()
-            ], 422);
-
-        } else {
-
-            $libro = Libro::find($id);
-
-            $libro->titulo = $request->titulo;
-            $libro->autor = $request->autor;
-            $libro->anho_publicacion = $request->anho_publicacion;
-            $libro->genero = $request->genero;
-            $libro->descripcion = $request->descripcion;
-
-            $libro->save();
-
-            return view('enviado');
-
-        }
-
-    }
+    
 
 
 
