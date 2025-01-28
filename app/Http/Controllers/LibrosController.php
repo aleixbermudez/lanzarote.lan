@@ -65,7 +65,7 @@ class LibrosController extends Controller
                 $salida = 'error';
             }
 
-            return view($salida);
+            return view('libros.libros',compact('libros'));
 
         }
         
@@ -73,7 +73,10 @@ class LibrosController extends Controller
 
     function mostrar_formulario()
     {
-        return view('libros.formulario-libro');
+        $GENEROS        = Libro::GENEROS;
+        $EDITORIALES    = Libro::EDITORIALES;
+
+        return view('libros.formulario-libro',compact('GENEROS', 'EDITORIALES'));
     }
 
     function mostrar_libros()
@@ -83,7 +86,7 @@ class LibrosController extends Controller
     }
 
 
-    function eliminar_libro($id) {
+    function eliminar($id) {
 
         $libro = Libro::find($id);
         $salida = '';
@@ -95,14 +98,14 @@ class LibrosController extends Controller
             $salida = 'error';
         }
 
-        return view($salida);
+        return $this->mostrar_libros();
 
     }
 
-    function actualizar_libro($id) {
+    function actualizar($id) {
 
         $libro = Libro::find($id);
-        return view('libros.editar-libro', compact('libro'));
+        return view('libros.formulario-libro', compact('libro'));
 
     }
 

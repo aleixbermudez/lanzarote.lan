@@ -3,6 +3,10 @@
 
 @section('content')
 
+    @if(session('success'))
+        <p style="text-align:center;" class="alert alert-danger">{{ session('success') }}</p>
+    @endif
+
 
     <div class="container">
 
@@ -31,8 +35,9 @@
                     <th>{{$libro->descripcion}}</th>
                     <th>
                         <div class="d-flex">
-                            <button type="button" class="btn"><a href="/libros/eliminar/{{$libro->id}}">❌</a></button>
-                            <button type="button" class="btn"><a href="/libros/actualizar/{{$libro->id}}">⚙️</a></button>
+                            <a href="/libros/{{ $libro->id }}" class="btn btn-primary" style="margin: 2px;"><i class="bi bi-search"></i></a>
+                            <a href="/libros/actualizar/{{ $libro->id }}" class="btn btn-warning" style="margin: 2px;"><i class="bi bi-pencil-square"></i></a>
+                            <a href="/libros/eliminar/{{ $libro->id }}" class="btn btn-danger" style="margin: 2px;"><i class="bi bi-trash"></i></a>
                         </div>
                     </th>
                 </tr>
@@ -40,14 +45,16 @@
         </tbody>
         </table>
 
+        <div class="container" style="margin-top:20px;">
+            {{ $libros->links() }}
+        </div>
+
         <div class="d-flex">
-            <a href="/libros/alta" style="width: 200px;" class="btn btn-secondary ml-auto">Añadir</a>
+            <a href="/libros/alta" style="width: 200px; margin-top:20px" class="btn btn-success ml-auto">Añadir</a>
         </div>
 
     </div>
 
-    <div>
-        {{ $libros->links() }}
-    </div>
+
 
 @endsection

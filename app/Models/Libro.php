@@ -32,7 +32,7 @@ class Libro extends Model
 
     const EDITORIALES = [
 
-        'AN' => 'Anaya'
+         'AN' => 'Anaya'
         ,'MN' => 'Minotauro'
         ,'SD' => 'Sudamericana'
         ,'SW' => 'Secker & Warburg'

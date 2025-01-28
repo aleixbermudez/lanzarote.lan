@@ -7,9 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/playas', function () {
-    return view('playas');
-});
 
 Route::get('/contacto', function () {
     $url = route('contacto'); 
@@ -30,12 +27,9 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+Route::get('/libros',       [LibrosController::class, 'mostrar_libros']);
+
 Route::get('/libros/alta',       [LibrosController::class, 'mostrar_formulario']);
 Route::post('/libros/alta',      [LibrosController::class, 'procesar']);
 
-Route::get('/libros',       [LibrosController::class, 'mostrar_libros']);
-
-Route::get('/libros/eliminar/{id}',       [LibrosController::class, 'eliminar_libro']);
-
-Route::get('/libros/actualizar/{id}',       [LibrosController::class, 'actualizar_libro']);
-Route::post('/libros/actualizar/{id}',       [LibrosController::class, 'procesar_actualizar_libro']);
+Route::get('/libros/eliminar/{id}',       [LibrosController::class, 'eliminar']);
