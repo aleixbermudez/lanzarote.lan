@@ -27,9 +27,10 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::get('/libros',       [LibrosController::class, 'mostrar_libros']);
+Route::get('/libros',               [LibrosController::class, 'mostrar_libros']);
+Route::get('/libro/{id}',           [LibrosController::class, 'observar']);
 
-Route::get('/libros/alta',       [LibrosController::class, 'mostrar_formulario']);
-Route::post('/libros/alta',      [LibrosController::class, 'procesar']);
+Route::get('/libros/alta',          [LibrosController::class, 'formulario']);
+Route::post('/libros/alta',         [LibrosController::class, 'procesar']);
 
-Route::get('/libros/eliminar/{id}',       [LibrosController::class, 'eliminar']);
+Route::get('/libros/eliminar/{id}', [LibrosController::class, 'eliminar']);

@@ -31,11 +31,11 @@
                     <th>{{$libro->editorial}}</th>
                     <th>{{$libro->autor}}</th>
                     <th>{{$libro->anho_publicacion}}</th>
-                    <th>{{$libro->genero}}</th>
+                    <th>{{ $libro->genero }}</th>
                     <th>{{$libro->descripcion}}</th>
                     <th>
                         <div class="d-flex">
-                            <a href="/libros/{{ $libro->id }}" class="btn btn-primary" style="margin: 2px;"><i class="bi bi-search"></i></a>
+                            <a href="/libro/{{ $libro->id }}" class="btn btn-primary" style="margin: 2px;"><i class="bi bi-search"></i></a>
                             <a href="/libros/actualizar/{{ $libro->id }}" class="btn btn-warning" style="margin: 2px;"><i class="bi bi-pencil-square"></i></a>
                             <a href="/libros/eliminar/{{ $libro->id }}" class="btn btn-danger" style="margin: 2px;"><i class="bi bi-trash"></i></a>
                         </div>

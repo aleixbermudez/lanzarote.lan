@@ -28,28 +28,35 @@ class LibrosController extends Controller
             'genero' => 'required',
             'descripcion' => 'required'
         ];
+        
         $validator = Validator::make($data, $rules);
         
-        if ($validator->fails()) {
+        if ($validator->fails()) 
+        {
         
             return response()->json([
                 'message' => 'Los datos introducidos no son válidos',
                 'errors' => $validator->errors()
             ], 422);
 
-        } else {
+        } 
+        else 
+        {
 
             $libros = Libro::all();
             $repetido = 0;
             $salida = '';
 
-            foreach ($libros as $libro) {
-                if ($request->titulo == $libro->titulo) {
+            foreach ($libros as $libro) 
+            {
+                if ($request->titulo == $libro->titulo) 
+                {
                     $repetido += 1;
                 }
             }
 
-            if ($repetido == 0) {
+            if ($repetido == 0) 
+            {
 
                 $modelo = new Libro;
                 $modelo->titulo = $request->titulo;
@@ -61,7 +68,9 @@ class LibrosController extends Controller
                 $modelo->save();
     
                 $salida = 'enviado';
-            } else {
+            } 
+            else 
+            {
                 $salida = 'error';
             }
 
@@ -71,12 +80,14 @@ class LibrosController extends Controller
         
     }
 
-    function mostrar_formulario()
+    function formulario($opt='',$id)
     {
         $GENEROS        = Libro::GENEROS;
         $EDITORIALES    = Libro::EDITORIALES;
 
-        return view('libros.formulario-libro',compact('GENEROS', 'EDITORIALES'));
+        $libro = Libro::find($id);
+
+        return view('libros.formulario-libro',compact('GENEROS', 'EDITORIALES', 'libro', 'opt'));
     }
 
     function mostrar_libros()
@@ -86,32 +97,20 @@ class LibrosController extends Controller
     }
 
 
-    function eliminar($id) {
-
-        $libro = Libro::find($id);
-        $salida = '';
-
-        if ($libro) {
-            $libro->delete();
-            $salida = 'eliminado';
-        } else {
-            $salida = 'error';
-        }
-
-        return $this->mostrar_libros();
+    function eliminar($id) 
+    {
+        return $this->formulario('supr', $id);
 
     }
 
-    function actualizar($id) {
-
-        $libro = Libro::find($id);
-        return view('libros.formulario-libro', compact('libro'));
+    function actualizar()
+    {
 
     }
 
-
-    
-
-
+    function observar($id)
+    {
+        return $this->formulario('view', $id);
+    }
 
 }
