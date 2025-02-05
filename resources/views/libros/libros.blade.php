@@ -24,6 +24,7 @@
             </tr>
         </thead>
         <tbody>
+            
             @foreach($libros as $libro)
                 <tr>    
                     <th>{{$libro->id}}</th>

@@ -103,11 +103,6 @@ class LibrosController extends Controller
 
     }
 
-    function actualizar()
-    {
-
-    }
-
     function observar($id)
     {
         return $this->formulario('view', $id);
